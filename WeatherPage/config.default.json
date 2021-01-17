@@ -1,0 +1,6 @@
+{
+	"WeatherPage": {
+		"Port": "1992",
+		"ApiUrl": "http://localhost:1984/WeatherForecast"
+	}
+}
