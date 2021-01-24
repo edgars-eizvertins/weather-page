@@ -105,11 +105,32 @@ namespace WeatherPage.Classes
 		[JsonPropertyName("wind_degrees")]
 		public int WindDegrees { get; set; }
 
+		public string WindDegreesView {
+			get {				
+				return DegreesToCompass(this.WindDegrees);
+			}			
+		}
+
+		private string DegreesToCompass(double degrees)
+		{
+			var value = (int)((degrees/22.5) + 0.5);
+			var compassElements = new string[] {
+				"N","NNE","NE","ENE","E","ESE", "SE", "SSE","S","SSW","SW","WSW","W","WNW","NW","NNW"
+			};
+			return compassElements[(value % 16)];
+		}			
+
 		[JsonPropertyName("weather")]
 		public ICollection<WeatherView> Weather { get; set; }
 
 		[JsonPropertyName("probability_of_precipitation")]
 		public decimal ProbabilityOfPrecipitation { get; set; }
+
+		public string ProbabilityOfPrecipitationView {
+			get {
+				return (ProbabilityOfPrecipitation / 100) + " %";
+			}
+		}
 
 		[JsonPropertyName("rain")]
 		[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
@@ -125,7 +146,7 @@ namespace WeatherPage.Classes
 		public DateTime Date { get; set; }
 
 		[JsonPropertyName("precipitation_mm")]
-		public int PrecipitationMm { get; set; } 
+		public decimal PrecipitationMm { get; set; } 
 	}    
 
 	public class RainView: Dictionary<string, decimal> {}
@@ -155,6 +176,12 @@ namespace WeatherPage.Classes
  	public class DailyView    {
 		[JsonPropertyName("date")]
 		public DateTime Date { get; set; }
+
+		public string DateView {
+			get {
+				return Date.ToString("dd.MM.yyyy");
+			}
+		}
 
 		[JsonPropertyName("sunrise")]
 		public DateTime Sunrise { get; set; }

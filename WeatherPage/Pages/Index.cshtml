@@ -4,7 +4,72 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome. Now temparature is: @Model.Data.Current.Temperature</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="text-center border">  
+  <div class="container">
+	<div class="row">
+		<div class="col-sm-2 container p-3 my-3 bg-primary text-white border">
+			<h5>Temp</h5>
+			<h3>@Model.Data.Current.Temperature &#8451;</h3>
+			<h5>Feels</h5>
+			<h3>@Model.Data.Current.FeelsLike &#8451;</h3>
+		</div>		
+		<div class="col-sm-2 container p-3 my-3 bg-primary text-white border">
+			<h5>Precipitation</h5>
+			<h3>@Model.Data.Current.ProbabilityOfPrecipitationView</h3>
+			<h5>Pressure</h5>
+			<h3>@Model.Data.Current.Pressure kPa</h3>			
+		</div>
+		<div class="col-sm-2 container p-3 my-3 bg-primary text-white border">
+			<h5>Humidity</h5>
+			<h3>@Model.Data.Current.Humidity %</h3>
+		</div>
+		<div class="col-sm-2 container p-3 my-3 bg-primary text-white border">
+			<h5>UVI</h5>
+			<h3>@Model.Data.Current.UvIndex</h3>
+		</div>
+		<div class="col-sm-2 container p-3 my-3 bg-primary text-white border">
+			<h5>Wind</h5>
+			<h3>@Model.Data.Current.WindSpeedMeters m/s, @Model.Data.Current.WindDegreesView</h3>
+		</div>
+	</div>
+	</div>
+</div>
+
+<div class="text-center border">
+	<div class="container">
+		<div class="row">
+			@foreach (var daily in @Model.Data.Daily) {
+				<div class="col-sm-2 container p-3 my-3 bg-dark text-white border">
+					<h8>@daily.DateView</h8>
+					<p>
+						<span>Temp: @daily.Temperature.Max &nbsp;/&nbsp; @daily.Temperature.Min</span><br/>
+						@if (@daily.RainVolume != null) {
+							<span>Rain: @daily.RainVolume, mm</span><br/>
+						}
+						@if (@daily.SnowVolume != null) {
+							<span>Snow: @daily.SnowVolume, mm</span><br/>
+						}
+					</p>
+				</div>				
+			}
+		</div>
+	</div>
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+      <h3>Column 1</h3>
+      <p>Lorem ipsum dolor..</p>
+    </div>
+    <div class="col-sm-4">
+      <h3>Column 2</h3>
+      <p>Lorem ipsum dolor..</p>
+    </div>
+    <div class="col-sm-4">
+      <h3>Column 3</h3>
+      <p>Lorem ipsum dolor..</p>
+    </div>
+  </div>
 </div>

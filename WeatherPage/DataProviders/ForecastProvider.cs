@@ -13,7 +13,8 @@ namespace WeatherPage.DataProviders
 		{
 			var httpClient = new HttpClient();
 			httpClient.BaseAddress = new Uri(AppSettings.Settings.WeatherPage.ApiUrl);
-			return await httpClient.GetFromJsonAsync<WeatherDataView>(String.Empty);
+			var data = await httpClient.GetFromJsonAsync<WeatherDataView>(String.Empty);
+			return data;
 		}
     }
 }

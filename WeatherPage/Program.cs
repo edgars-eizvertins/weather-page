@@ -22,7 +22,7 @@ namespace WeatherPage
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-					webBuilder.UseUrls($"http://*:{AppSettings.Settings.WeatherPage.Port}");
+					webBuilder.UseUrls($"http://localhost:{AppSettings.Settings.WeatherPage.Port}");
                 });
     }
 }
